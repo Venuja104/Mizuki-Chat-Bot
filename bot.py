@@ -5,9 +5,6 @@ import aiofiles
 import aiohttp
 from random import randint
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from google_trans_new import google_translator
-
-translator = google_translator()
 
 BOT_TOKEN = Config.BOT_TOKEN
 BOT_ID = Config.BOT_ID
@@ -42,16 +39,9 @@ async def mizuki(client, message):
 
     if text.startswith("/") or text.startswith("@"):
         message.continue_propagation()
-    try:
-        lan = translator.detect(text)
-    except:
-        return
+
     test = text
-    if not "en" in lan and not lan == "":
-        try:
-            test = translator.translate(test, lang_tgt="en")
-        except:
-            return
+    
     finaltxt = test.replace(" ", "%20")
     try:
         L = await fetch(f"https://api.affiliateplus.xyz/api/chatbot?message={finaltxt}&botname=Mizuki&ownername=Jason&user=1")
@@ -59,8 +49,6 @@ async def mizuki(client, message):
     except Exception as e:
         await m.edit(str(e))
         return
-    if not "en" in lan and not lan == "":
-        msg = translator.translate(msg, lang_tgt=lan[0])
     try:
         await bot.send_chat_action(message.chat.id, "typing")
         await message.reply(msg)
