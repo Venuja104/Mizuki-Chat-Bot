@@ -12,8 +12,8 @@ translator = google_translator()
 BOT_TOKEN = Config.BOT_TOKEN
 BOT_ID = Config.BOT_ID
 
-bot = Client("MizukiChat", bot_token=BOT_TOKEN, api_id=6,
-             api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e")
+bot = Client("MizukiChat", bot_token=BOT_TOKEN, api_id=7395896,
+             api_hash="cd3998ddf318dad74d7c506731bc0abc")
 print("\nMizuki Chatbot Started!\n")
 
 
@@ -54,7 +54,7 @@ async def mizuki(client, message):
             return
     finaltxt = test.replace(" ", "%20")
     try:
-        L = await fetch(f"https://api.affiliateplus.xyz/api/chatbot?message={finaltxt}&botname=Mizuki&ownername=Jason&user=1")
+        L = await fetch(f"https://api.affiliateplus.xyz/api/chatbot?messge={finaltxt}MESSAGE&botname=BOT_NAME&ownername=DEVELOPER_NAME&user=1")
         msg = L["message"]        
     except Exception as e:
         await m.edit(str(e))
